@@ -24,5 +24,5 @@ Route::get('/dashboard', function () {
 Route::view('/{any}', 'dashboard')
 ->middleware(['auth'])
     ->where('any', '.*');
-    
+
 require __DIR__.'/auth.php';
