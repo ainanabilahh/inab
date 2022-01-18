@@ -33,7 +33,7 @@ class CategorySeeder extends Seeder
             'Giving ',
             'Computer Replacement ',
             'Software Subscriptions ',
-            'Stuffl Forgot to Budget For ',
+            'Stuff I Forgot to Budget For ',
             'Rent/Mortgage ',
             'Electric ',
             'Water ',

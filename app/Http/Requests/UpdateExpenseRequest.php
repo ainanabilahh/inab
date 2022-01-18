@@ -26,11 +26,12 @@ class UpdateExpenseRequest extends FormRequest
         return [
             // 'user_id' => ['required', 'string'],
             'name' => ['required'],
-            'amount' => ['required'],
+            'amount' => ['required', 'numeric'],
             'category_id' => ['required'],
-            'link' => ['string'],
-            // 'note' => [''],
-            // 'tag' => [''],
+            'date' => ['date'],
+            'link' => ['string', 'nullable'],
+            'note' => ['string', 'nullable'],
+            'tag' => ['string', 'nullable'],
         ];
     }
 }
