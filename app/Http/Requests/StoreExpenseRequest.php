@@ -24,14 +24,14 @@ class StoreExpenseRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => ['required', 'string'],
+            'user_id' => ['required'],
             'name' => ['required'],
-            'amount' => ['required'],
+            'amount' => ['required', 'numeric'],
             'category_id' => ['required'],
             'date' => ['date'],
-            'link' => ['string'],
-            // 'note' => [''],
-            // 'tag' => [''],
+            'link' => ['string', 'nullable'],
+            'note' => ['string', 'nullable'],
+            'tag' => ['string', 'nullable'],
         ];
     }
 }

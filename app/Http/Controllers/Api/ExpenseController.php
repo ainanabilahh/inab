@@ -12,7 +12,13 @@ class ExpenseController extends Controller
 {
     public function index()
     {
-        return ExpenseResource::collection(Expense::with('category')->get());
+        return ExpenseResource::collection(
+            Expense::with('category')
+                ->whereMonth('date', date('m'))
+                ->whereYear('date', date('Y'))
+                ->orderByDesc('date')
+                ->get()
+        );
     }
 
     public function store(StoreExpenseRequest $request)

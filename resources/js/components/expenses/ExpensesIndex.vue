@@ -80,6 +80,15 @@
                                 </tr>
                             </template>
                         </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap" colspan="2">
+                                    <p class="text-right">TOTAL</p>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap" colspan="4">RM {{ totalItem }}</td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -95,8 +104,22 @@ import {
 } from 'vue';
 
 export default {
+    computed: {
+        totalItem: function () {
+            let sum = 0;
+            this.expenses.forEach(function (item) {
+                sum += (parseFloat(item.amount));
+            });
+
+            return sum.toFixed(2);
+        }
+    },
     setup() {
-        const { expenses, getExpenses, destroyExpense } = useExpenses()
+        const {
+            expenses,
+            getExpenses,
+            destroyExpense
+        } = useExpenses()
 
         const deleteExpense = async (id) => {
             if (!window.confirm('You sure?')) {
@@ -123,8 +146,8 @@ export default {
             }
         }
 
-        const convertFloat = function(value){
-             if (value) {
+        const convertFloat = function (value) {
+            if (value) {
                 return parseFloat(value).toFixed(2)
             }
         }
