@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Expense;
 use App\Http\Resources\ExpenseResource;
+use App\Http\Requests\StoreExpenseRequest;
+use App\Http\Requests\UpdateExpenseRequest;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
@@ -26,7 +28,7 @@ class ExpenseController extends Controller
         return new ExpenseResource($expense);
     }
 
-    public function update(StoreExpenseRequest $request, Expense $expense)
+    public function update(UpdateExpenseRequest $request, Expense $expense)
     {
         $expense->update($request->validated());
 

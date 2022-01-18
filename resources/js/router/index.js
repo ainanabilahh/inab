@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import ExpensesIndex from '../components/expenses/ExpensesIndex.vue'
 import ExpensesCreate from '../components/expenses/ExpensesCreate.vue'
+import ExpensesEdit from '../components/expenses/ExpensesEdit.vue'
 
 const routes = [
     {
@@ -10,9 +11,15 @@ const routes = [
         component: ExpensesIndex
     },
     {
-        path: '/dashboard',
+        path: '/expenses/create',
         name: 'expenses.create',
         component: ExpensesCreate
+    },
+    {
+        path: '/expenses/:id/edit',
+        name: 'expenses.edit',
+        component: ExpensesEdit,
+        props: true
     }
 ];
 

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 
 export default function useExpenses() {
-    const company = ref([])
+    const expense = ref([])
     const expenses = ref([])
 
     const errors = ref('')
@@ -16,7 +16,7 @@ export default function useExpenses() {
 
     const getExpense = async (id) => {
         let response = await axios.get(`/api/expenses/${id}`)
-        company.value = response.data.data
+        expense.value = response.data.data
     }
 
     const storeExpense = async (data) => {
@@ -36,7 +36,7 @@ export default function useExpenses() {
     const updateExpense = async (id) => {
         errors.value = ''
         try {
-            await axios.patch(`/api/expenses/${id}`, company.value)
+            await axios.patch(`/api/expenses/${id}`, expense.value)
             await router.push({ name: 'expenses.index' })
         } catch (e) {
             if (e.response.status === 422) {
@@ -53,7 +53,7 @@ export default function useExpenses() {
 
     return {
         errors,
-        company,
+        expense,
         expenses,
         getExpense,
         getExpenses,
