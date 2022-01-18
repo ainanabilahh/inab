@@ -31,7 +31,6 @@ export default function useExpenses() {
                 }
             }
         }
-
     }
 
     const updateExpense = async (id) => {
@@ -48,6 +47,10 @@ export default function useExpenses() {
         }
     }
 
+    const destroyExpense = async (id) => {
+        await axios.delete(`/api/expenses/${id}`)
+    }
+
     return {
         errors,
         company,
@@ -55,6 +58,7 @@ export default function useExpenses() {
         getExpense,
         getExpenses,
         storeExpense,
-        updateExpense
+        updateExpense,
+        destroyExpense
     }
 }

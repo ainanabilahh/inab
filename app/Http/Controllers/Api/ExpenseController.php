@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Expense;
+use App\Http\Resources\ExpenseResource;
 use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
