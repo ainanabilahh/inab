@@ -28,6 +28,7 @@ class StoreExpenseRequest extends FormRequest
             'name' => ['required'],
             'amount' => ['required'],
             'category_id' => ['required'],
+            'category_id' => ['required'],
             // 'note' => [''],
             // 'tag' => [''],
         ];

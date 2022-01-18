@@ -7,13 +7,12 @@ use App\Models\Expense;
 use App\Http\Resources\ExpenseResource;
 use App\Http\Requests\StoreExpenseRequest;
 use App\Http\Requests\UpdateExpenseRequest;
-use Illuminate\Http\Request;
 
 class ExpenseController extends Controller
 {
     public function index()
     {
-        return ExpenseResource::collection(Expense::all());
+        return ExpenseResource::collection(Expense::with('category')->get());
     }
 
     public function store(StoreExpenseRequest $request)

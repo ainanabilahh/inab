@@ -21,6 +21,12 @@
                                     <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Category</span>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Date</span>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Link</span>
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Notes</span>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -37,10 +43,16 @@
                                         {{ item.name }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        {{ item.amount }}
+                                        RM {{ item.amount }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        {{ item.category_id }}
+                                        {{ item.category.name }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        {{ item.date }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <a :href="item.link" target="_blank" class="mr-2 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">Launch</a>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         {{ item.notes }}
