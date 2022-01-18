@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,7 +25,7 @@ class UpdateExpenseRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'user_id' => ['required', 'string'],
+            'user_id' => ['required'],
             'name' => ['required'],
             'amount' => ['required', 'numeric'],
             'category_id' => ['required'],

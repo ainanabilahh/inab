@@ -34,9 +34,7 @@
             <div>
                 <label for="date" class="mt-4 block text-sm font-medium text-gray-700">Date</label>
                 <div class="mt-1">
-                    <input type="text" name="date" id="date"
-                           class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           v-model="form.date">
+                    <Datepicker v-model="date" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></Datepicker>
                 </div>
             </div>
 
@@ -61,11 +59,17 @@ import useCategories from '../../composables/categories'
 import { reactive, onMounted } from 'vue'
 
 export default {
+    // components: { Datepicker },
+     data() {
+            return {
+                date: null,
+            };
+    },
     setup() {
         const form = reactive({
             name: '',
             amount: '',
-            user_id: '1',
+            user_id: getUserId,
             category_id: '',
             date: '',
             link: '',
@@ -74,16 +78,25 @@ export default {
         const { errors, storeExpense } = useExpenses()
         const { categories, getCategories } = useCategories()
 
-        onMounted(getCategories)
+        onMounted(() => {
+            getCategories
+            // const date = new Date();
+            // date.value = date;
+        })
 
         const saveExpense = async () => {
             await storeExpense({ ...form })
+        }
+
+        const getUserId = function(){
+            return document.querySelector("meta[name='user_id']").getAttribute('content');
         }
 
         return {
             form,
             errors,
             categories,
+            getUserId,
             saveExpense
         }
     }
