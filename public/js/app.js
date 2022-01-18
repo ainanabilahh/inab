@@ -24904,9 +24904,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
       return getExpense(props.id);
     });
-    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
-      return getCategories;
-    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(getCategories);
 
     var saveExpense = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -24977,6 +24975,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return sum.toFixed(2);
     }
   },
+  methods: {
+    formatDate: function formatDate(value) {
+      if (value) {
+        return moment__WEBPACK_IMPORTED_MODULE_1___default()(String(value)).format('DD/MM/YYYY');
+      }
+    },
+    truncate: function truncate(text, length, suffix) {
+      if (text.length > length) {
+        return text.substring(0, length) + suffix;
+      } else {
+        return text;
+      }
+    },
+    convertFloat: function convertFloat(value) {
+      if (value) {
+        return parseFloat(value).toFixed(2);
+      }
+    },
+    getSelectedMonth: function getSelectedMonth() {
+      return moment__WEBPACK_IMPORTED_MODULE_1___default()(String(new Date())).format('MMMM YYYY');
+    }
+  },
   setup: function setup() {
     var _useExpenses = (0,_composables_expenses__WEBPACK_IMPORTED_MODULE_2__["default"])(),
         expenses = _useExpenses.expenses,
@@ -25018,32 +25038,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }();
 
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(getExpenses);
-
-    var truncate = function truncate(text, length, suffix) {
-      if (text.length > length) {
-        return text.substring(0, length) + suffix;
-      } else {
-        return text;
-      }
-    };
-
-    var formatDate = function formatDate(value) {
-      if (value) {
-        return moment__WEBPACK_IMPORTED_MODULE_1___default()(String(value)).format('DD/MM/YYYY');
-      }
-    };
-
-    var convertFloat = function convertFloat(value) {
-      if (value) {
-        return parseFloat(value).toFixed(2);
-      }
-    };
-
     return {
       expenses: expenses,
-      truncate: truncate,
-      formatDate: formatDate,
-      convertFloat: convertFloat,
       deleteExpense: deleteExpense
     };
   }
@@ -25339,7 +25335,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ))], 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.expense.category_id]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    type: "text",
+    type: "date",
     name: "date",
     id: "date",
     "class": "block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50",
@@ -25588,7 +25584,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["to"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.expenses, function (item, index) {
+  , ["to"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.getSelectedMonth()), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", _hoisted_10, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.expenses, function (item, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
       key: item.id,
       "class": "bg-white"
@@ -25596,15 +25594,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       title: item.name
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.truncate(item.name, 40, '...')), 9
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.truncate(item.name, 40, '...')), 9
     /* TEXT, PROPS */
-    , _hoisted_13)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, " RM " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.convertFloat(item.amount)), 1
+    , _hoisted_13)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, " RM " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.convertFloat(item.amount)), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.category.name), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.formatDate(item.date)), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" {{ (item.date | formatDate) }} "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatDate(item.date)), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [item.link === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_18, _hoisted_20)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [item.link === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_18, _hoisted_20)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: item.link,
       title: "Launch",
       target: "_blank",
@@ -26158,7 +26156,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [{
-  path: '/dashboard',
+  path: '/accounts',
   name: 'expenses.index',
   component: _components_expenses_ExpensesIndex_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {

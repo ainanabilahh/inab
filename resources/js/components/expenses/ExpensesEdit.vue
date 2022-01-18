@@ -37,7 +37,7 @@
             <div>
                 <label for="date" class="mt-4 block text-sm font-medium text-gray-700">Date</label>
                 <div class="mt-1">
-                    <input type="text" name="date" id="date"
+                    <input type="date" name="date" id="date"
                            class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                            v-model="expense.date">
                 </div>
@@ -78,7 +78,7 @@ export default {
         const { categories, getCategories } = useCategories()
 
         onMounted(() => getExpense(props.id))
-        onMounted(() => getCategories)
+        onMounted(getCategories)
 
         const saveExpense = async () => {
             await updateExpense(props.id)

@@ -7,6 +7,9 @@
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <h2>
+                    {{ getSelectedMonth() }}
+                </h2>
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-100">
@@ -46,6 +49,7 @@
                                         {{ item.category.name }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
+                                        <!-- {{ (item.date | formatDate) }} -->
                                         {{ formatDate(item.date) }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
@@ -112,7 +116,29 @@ export default {
             });
 
             return sum.toFixed(2);
-        }
+        },
+    },
+    methods: {
+        formatDate: function (value) {
+            if (value) {
+                return moment(String(value)).format('DD/MM/YYYY')
+            }
+        },
+        truncate: function (text, length, suffix) {
+            if (text.length > length) {
+                return text.substring(0, length) + suffix;
+            } else {
+                return text;
+            }
+        },
+        convertFloat: function (value) {
+            if (value) {
+                return parseFloat(value).toFixed(2)
+            }
+        },
+        getSelectedMonth: function () {
+           return moment(String(new Date())).format('MMMM YYYY')
+        },
     },
     setup() {
         const {
@@ -132,31 +158,8 @@ export default {
 
         onMounted(getExpenses)
 
-        const truncate = function (text, length, suffix) {
-            if (text.length > length) {
-                return text.substring(0, length) + suffix;
-            } else {
-                return text;
-            }
-        }
-
-        const formatDate = function (value) {
-            if (value) {
-                return moment(String(value)).format('DD/MM/YYYY')
-            }
-        }
-
-        const convertFloat = function (value) {
-            if (value) {
-                return parseFloat(value).toFixed(2)
-            }
-        }
-
         return {
             expenses,
-            truncate,
-            formatDate,
-            convertFloat,
             deleteExpense,
         }
     }

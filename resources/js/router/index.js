@@ -6,7 +6,7 @@ import ExpensesEdit from '../components/expenses/ExpensesEdit.vue'
 
 const routes = [
     {
-        path: '/dashboard',
+        path: '/accounts',
         name: 'expenses.index',
         component: ExpensesIndex
     },
