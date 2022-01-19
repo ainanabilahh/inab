@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::view('/{any}', 'dashboard')->where('any', '.*');
+    // Route::view('/{any}', 'dashboard')->where('any', '.*');
 
     Route::get('/dashboard', function () {
         return view('dashboard');

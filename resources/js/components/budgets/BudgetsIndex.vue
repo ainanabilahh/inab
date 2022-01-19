@@ -1,7 +1,7 @@
 <template>
     <div class="flex place-content-end mb-4">
         <div class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
-            <router-link :to="{ name: 'budgets.create' }" class="text-sm font-medium text-black">Create an expense</router-link>
+            <router-link :to="{ name: 'budgets.create' }" class="text-sm font-medium text-black">Create a budget</router-link>
         </div>
     </div>
     <div class="flex flex-col">
@@ -21,13 +21,10 @@
                                     <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Name</span>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Amount</span>
+                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Created At</span>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Category</span>
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Date</span>
+                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Updated At</span>
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
                             </tr>
@@ -40,17 +37,13 @@
                                         {{ index+1 }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div :title="item.name">{{ truncate(item.name, 35, '...') }}</div>
+                                        <div :title="item.name">{{ (item.name, 35, '...') }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        RM {{ convertFloat(item.amount) }}
+                                        {{ $myGlobalVariable.formatDate(item.created_at) }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        {{ item.category.name }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <!-- {{ (item.date | formatDate) }} -->
-                                        {{ formatDate(item.date) }}
+                                         {{ $myGlobalVariable.formatDate(item.updated_at) }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span v-if="item.link === null">
@@ -84,15 +77,6 @@
                                 </tr>
                             </template>
                         </tbody>
-
-                        <tfoot>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap" colspan="2">
-                                    <p class="text-right">TOTAL</p>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap" colspan="4">RM {{ totalItem }}</td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </div>
@@ -103,6 +87,7 @@
 <script>
 import moment from 'moment'
 import useBudgets from '../../composables/budgets'
+
 import {
     onMounted
 } from 'vue';
@@ -118,34 +103,9 @@ export default {
             return sum.toFixed(2);
         },
     },
-    methods: {
-        formatDate: function (value) {
-            if (value) {
-                return moment(String(value)).format('DD/MM/YYYY')
-            }
-        },
-        truncate: function (text, length, suffix) {
-            if (text.length > length) {
-                return text.substring(0, length) + suffix;
-            } else {
-                return text;
-            }
-        },
-        convertFloat: function (value) {
-            if (value) {
-                return parseFloat(value).toFixed(2)
-            }
-        },
-        getSelectedMonth: function () {
-           return moment(String(new Date())).format('MMMM YYYY')
-        },
-    },
     setup() {
-        const {
-            budgets,
-            getBudgets,
-            destroyExpense
-        } = useBudgets()
+
+        const { budgets, getBudgets, destroyExpense } = useBudgets()
 
         const deleteExpense = async (id) => {
             if (!window.confirm('You sure?')) {
