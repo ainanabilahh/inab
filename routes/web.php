@@ -19,15 +19,19 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::view('/{any}', 'dashboard')->where('any', '.*');
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
     Route::get('/budgets', function () {
         return view('budgets');
     })->name('budgets');
+
     Route::get('/accounts', function () {
         return view('accounts');
     })->name('accounts');
+
     Route::get('/expenses', function () {
         return view('expenses');
     })->name('expenses');

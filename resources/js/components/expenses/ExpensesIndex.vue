@@ -8,7 +8,7 @@
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                 <h2>
-                    {{ getSelectedMonth() }}
+                    <!-- {{ getSelectedMonth() }} -->
                 </h2>
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                     <table class="min-w-full divide-y divide-gray-200">
@@ -40,7 +40,7 @@
                                         {{ index+1 }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div :title="item.name">{{ truncate(item.name, 40, '...') }}</div>
+                                        <div :title="item.name">{{ truncate(item.name, 35, '...') }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         RM {{ convertFloat(item.amount) }}

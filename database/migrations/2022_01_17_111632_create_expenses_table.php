@@ -21,6 +21,8 @@ class CreateExpensesTable extends Migration
             $table->double('amount', 8, 2);
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('account_id');
+            $table->foreign('account_id')->references('id')->on('account');
             $table->date('date')->nullable();
             $table->string('link')->nullable();
             $table->text('note')->nullable();

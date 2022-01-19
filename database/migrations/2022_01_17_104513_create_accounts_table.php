@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddNewAttribute extends Migration
+class CreateAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,12 @@ class AddNewAttribute extends Migration
      */
     public function up()
     {
-        Schema::table('expenses', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('category');
+            $table->double('balance', 8, 2)->default(0);
+            $table->timestamps();
         });
     }
 
@@ -24,8 +29,6 @@ class AddNewAttribute extends Migration
      */
     public function down()
     {
-        Schema::table('expenses', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('accounts');
     }
 }
