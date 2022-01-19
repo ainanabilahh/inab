@@ -101,7 +101,6 @@
 </template>
 
 <script>
-import moment from 'moment'
 import useExpenses from '../../composables/expenses'
 import {
     onMounted
@@ -116,28 +115,6 @@ export default {
             });
 
             return sum.toFixed(2);
-        },
-    },
-    methods: {
-        formatDate: function (value) {
-            if (value) {
-                return moment(String(value)).format('DD/MM/YYYY')
-            }
-        },
-        truncate: function (text, length, suffix) {
-            if (text.length > length) {
-                return text.substring(0, length) + suffix;
-            } else {
-                return text;
-            }
-        },
-        convertFloat: function (value) {
-            if (value) {
-                return parseFloat(value).toFixed(2)
-            }
-        },
-        getSelectedMonth: function () {
-           return moment(String(new Date())).format('MMMM YYYY')
         },
     },
     setup() {
