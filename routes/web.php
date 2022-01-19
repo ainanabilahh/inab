@@ -37,5 +37,4 @@ Route::middleware(['auth'])->group(function () {
     })->name('expenses');
 });
 
-
 require __DIR__ . '/auth.php';
