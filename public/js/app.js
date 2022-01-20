@@ -25047,6 +25047,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       amount: '',
       user_id: document.querySelector("meta[name='user_id']").getAttribute('content'),
       category_id: '',
+      account_id: 1,
       date: '',
       link: ''
     });
