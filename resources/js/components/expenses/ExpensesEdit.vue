@@ -62,7 +62,7 @@
 
 <script>
 import useExpenses from '../../composables/expenses'
-import useCategories from '../../composables/categories'
+import useCategories from '../../composables/sub_categories'
 import { onMounted } from 'vue';
 
 export default {

@@ -10,6 +10,11 @@ import ExpensesIndex from '../components/expenses/ExpensesIndex.vue'
 import ExpensesCreate from '../components/expenses/ExpensesCreate.vue'
 import ExpensesEdit from '../components/expenses/ExpensesEdit.vue'
 
+// SUB-CATEGORIES
+import SubCategoriesIndex from '../components/sub_categories/Index.vue'
+import SubCategoriesCreate from '../components/sub_categories/Create.vue'
+import SubCategoriesEdit from '../components/sub_categories/Edit.vue'
+
 const routes = [
     // BUDGETS
     {
@@ -43,6 +48,23 @@ const routes = [
         path: '/expenses/:id/edit',
         name: 'expenses.edit',
         component: ExpensesEdit,
+        props: true
+    },
+    // SUB-CATEGORIES
+    {
+        path: '/sub_categories',
+        name: 'sub_categories.index',
+        component: SubCategoriesIndex
+    },
+    {
+        path: '/sub_categories/create',
+        name: 'sub_categories.create',
+        component: SubCategoriesCreate
+    },
+    {
+        path: '/sub_categories/:id/edit',
+        name: 'sub_categories.edit',
+        component: SubCategoriesEdit,
         props: true
     }
 ];

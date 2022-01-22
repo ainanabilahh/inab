@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('budgets')" :active="request()->path() === 'budgets'">
+                    <x-nav-link :href="route('sub_categories')" :active="request()->path() === 'sub_categories'">
                         {{ __('Sub-Categories') }}
                     </x-nav-link>
                 </div>

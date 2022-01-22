@@ -11,8 +11,8 @@ class Expense extends Model
 
     protected $guarded = ['id'];
 
-    public function category()
+    public function sub_category()
     {
-        return $this->hasOne(Category::class, 'id', 'category_id');
+        return $this->hasOne(SubCategory::class, 'id', 'sub_category_id');
     }
 }

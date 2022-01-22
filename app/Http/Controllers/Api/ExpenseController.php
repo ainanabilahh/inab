@@ -23,7 +23,7 @@ class ExpenseController extends Controller
         }
 
         return ExpenseResource::collection(
-            Expense::with('category')
+            Expense::with('sub_category')
                 ->whereMonth('date', $month)
                 ->whereYear('date', $year)
                 ->orderByDesc('date')
