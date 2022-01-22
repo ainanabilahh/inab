@@ -9,9 +9,22 @@ export default function useExpenses() {
     const errors = ref('')
     const router = useRouter()
 
-    const getExpenses = async () => {
-        let response = await axios.get('/api/expenses')
-        expenses.value = response.data.data
+    // const getExpenses = async () => {
+    //     let response = await axios.get('/api/expenses')
+    //     expenses.value = response.data.data
+    // }
+
+    const getExpenses = async (data) => {
+        try {
+            let response = await axios.post('/api/expenses/index', data)
+            expenses.value = response.data.data
+        } catch (e) {
+            if (e.response.status === 422) {
+                for (const key in e.response.data.errors) {
+                    errors.value += e.response.data.errors[key][0] + ' ';
+                }
+            }
+        }
     }
 
     const getExpense = async (id) => {
@@ -20,6 +33,7 @@ export default function useExpenses() {
     }
 
     const storeExpense = async (data) => {
+        console.log('data :>> ', data);
         errors.value = ''
         try {
             await axios.post('/api/expenses', data)

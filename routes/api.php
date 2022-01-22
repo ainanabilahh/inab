@@ -22,7 +22,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('expenses', ExpenseController::class);
+Route::post('/expenses/index', [ExpenseController::class, 'index'])->name('expenses.index');
+Route::apiResource('expenses', ExpenseController::class)->except(['index']);
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('budgets', BudgetController::class);
 Route::apiResource('accounts', AccountController::class);

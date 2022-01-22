@@ -5,17 +5,27 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Expense;
 use App\Http\Resources\ExpenseResource;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreExpenseRequest;
 use App\Http\Requests\UpdateExpenseRequest;
+use Illuminate\Support\Facades\Log;
 
 class ExpenseController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $month = date('m');
+        $year = date('Y');
+
+        if ($request->month && $request->year) {
+            $month = $request->month;
+            $year = $request->year;
+        }
+
         return ExpenseResource::collection(
             Expense::with('category')
-                // ->whereMonth('date', date('m'))
-                // ->whereYear('date', date('Y'))
+                ->whereMonth('date', $month)
+                ->whereYear('date', $year)
                 ->orderByDesc('date')
                 ->get()
         );

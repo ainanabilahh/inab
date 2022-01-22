@@ -57,7 +57,6 @@
 </template>
 
 <script>
-import moment from 'moment'
 import useExpenses from '../../composables/expenses'
 import useCategories from '../../composables/categories'
 import { reactive, onMounted, ref } from 'vue'
