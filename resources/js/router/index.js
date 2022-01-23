@@ -1,14 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 // BUDGETS
-import BudgetsIndex from '../components/budgets/BudgetsIndex.vue'
-import BudgetsCreate from '../components/budgets/BudgetsCreate.vue'
-import BudgetsEdit from '../components/budgets/BudgetsEdit.vue'
+import BudgetsIndex from '../components/budgets/Index.vue'
+import BudgetsCreate from '../components/budgets/Create.vue'
+import BudgetsEdit from '../components/budgets/Edit.vue'
 
 // EXPENSES
-import ExpensesIndex from '../components/expenses/ExpensesIndex.vue'
-import ExpensesCreate from '../components/expenses/ExpensesCreate.vue'
-import ExpensesEdit from '../components/expenses/ExpensesEdit.vue'
+import ExpensesIndex from '../components/expenses/Index.vue'
+import ExpensesCreate from '../components/expenses/Create.vue'
+import ExpensesEdit from '../components/expenses/Edit.vue'
 
 // SUB-CATEGORIES
 import SubCategoriesIndex from '../components/sub_categories/Index.vue'

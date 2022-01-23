@@ -18,26 +18,26 @@ class BudgetController extends Controller
 
     public function store(BudgetRequest $request)
     {
-        $expense = Budget::create($request->validated());
+        $budget = Budget::create($request->validated());
 
-        return new BudgetResource($expense);
+        return new BudgetResource($budget);
     }
 
-    public function show(Budget $expense)
+    public function show(Budget $budget)
     {
-        return new BudgetResource($expense);
+        return new BudgetResource($budget);
     }
 
-    public function update(BudgetRequest $request, Budget $expense)
+    public function update(BudgetRequest $request, Budget $budget)
     {
-        $expense->update($request->validated());
+        $budget->update($request->validated());
 
-        return new BudgetResource($expense);
+        return new BudgetResource($budget);
     }
 
-    public function destroy(Budget $expense)
+    public function destroy(Budget $budget)
     {
-        $expense->delete();
+        $budget->delete();
 
         return response()->noContent();
     }

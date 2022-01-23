@@ -7,11 +7,8 @@
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <h2>
-                    <!-- {{ getSelectedMonth() }} -->
-                </h2>
                 <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                    <table class="min-w-full divide-y divide-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 w-full">
                         <thead class="bg-gray-100">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -54,7 +51,7 @@
                                         </router-link>
 
                                         <!-- Delete -->
-                                        <button @click="deleteExpense(item.id)" title="Delete" class="inline-flex items-center px-2 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
+                                        <button @click="deleteBudget(item.id)" title="Delete" class="inline-flex items-center px-2 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
                                             <svg class="w-4 h-4" data-darkreader-inline-stroke="" fill="none" stroke="currentColor" style="--darkreader-inline-stroke: currentColor;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                             </svg>
@@ -78,26 +75,16 @@ import {
 } from 'vue';
 
 export default {
-    computed: {
-        totalItem: function () {
-            let sum = 0;
-            this.budgets.forEach(function (item) {
-                sum += (parseFloat(item.amount));
-            });
-
-            return sum.toFixed(2);
-        },
-    },
     setup() {
 
-        const { budgets, getBudgets, destroyExpense } = useBudgets()
+        const { budgets, getBudgets, destroyBudget } = useBudgets()
 
-        const deleteExpense = async (id) => {
+        const deleteBudget = async (id) => {
             if (!window.confirm('You sure?')) {
                 return
             }
 
-            await destroyExpense(id)
+            await destroyBudget(id)
             await getBudgets()
         }
 
@@ -105,7 +92,7 @@ export default {
 
         return {
             budgets,
-            deleteExpense,
+            deleteBudget,
         }
     }
 }

@@ -10,7 +10,7 @@ Alpine.start();
 import { createApp } from 'vue';
 import router from './router'
 import moment from 'moment'
-import ExpensesIndex from './components/expenses/ExpensesIndex.vue';
+import ExpensesIndex from './components/expenses/Index.vue';
 import Datepicker from 'vue3-date-time-picker';
 import 'vue3-date-time-picker/dist/main.css'
 
