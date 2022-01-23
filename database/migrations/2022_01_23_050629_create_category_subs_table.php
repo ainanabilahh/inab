@@ -15,6 +15,10 @@ class CreateCategorySubsTable extends Migration
     {
         Schema::create('category_subs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('sub_category_id');
+            $table->foreign('sub_category_id')->references('id')->on('sub_categories');
             $table->timestamps();
         });
     }

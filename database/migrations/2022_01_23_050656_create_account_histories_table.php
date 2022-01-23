@@ -15,6 +15,9 @@ class CreateAccountHistoriesTable extends Migration
     {
         Schema::create('account_histories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('account_id');
+            $table->foreign('account_id')->references('id')->on('accounts');
+            $table->double('balance', 8, 2)->default(0);
             $table->timestamps();
         });
     }

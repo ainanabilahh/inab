@@ -26,6 +26,7 @@ class BudgetRequest extends FormRequest
         return [
             'user_id' => ['required'],
             'name' => ['required'],
+            'category_name' => ['required']
         ];
     }
 }
