@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\SubCategory;
-use App\Http\Requests\StoreSubCategoryRequest;
-use App\Http\Requests\UpdateSubCategoryRequest;
+use App\Http\Requests\SubCategoryRequest;
 use App\Http\Resources\SubCategoryResource;
 use Illuminate\Support\Facades\Log;
 
@@ -13,37 +12,32 @@ class SubCategoryController extends Controller
 {
     public function index()
     {
-        Log::info(SubCategory::all());
         return SubCategoryResource::collection(SubCategory::all());
     }
 
-    public function create()
+    public function store(SubCategoryRequest $request)
     {
-        //
+        $subCategory = SubCategory::create($request->validated());
+
+        return new SubCategoryResource($subCategory);
     }
 
-    public function store(StoreSubCategoryRequest $request)
+    public function show(SubCategory $subCategory)
     {
-        //
+        return new SubCategoryResource($subCategory);
     }
 
-    public function show(SubCategory $category)
+    public function update(SubCategoryRequest $request, SubCategory $subCategory)
     {
-        //
+        $subCategory->update($request->validated());
+
+        return new SubCategoryResource($subCategory);
     }
 
-    public function edit(SubCategory $category)
+    public function destroy(SubCategory $subCategory)
     {
-        //
-    }
+        $subCategory->delete();
 
-    public function update(UpdateSubCategoryRequest $request, SubCategory $category)
-    {
-        //
-    }
-
-    public function destroy(SubCategory $category)
-    {
-        //
+        return response()->noContent();
     }
 }

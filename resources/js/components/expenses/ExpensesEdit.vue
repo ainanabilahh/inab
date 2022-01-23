@@ -72,7 +72,6 @@ export default {
             type: String
         }
     },
-
     setup(props) {
         const { errors, expense, updateExpense, getExpense } = useExpenses()
         const { categories, getCategories } = useCategories()
