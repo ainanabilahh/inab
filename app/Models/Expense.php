@@ -15,4 +15,9 @@ class Expense extends Model
     {
         return $this->hasOne(SubCategory::class, 'id', 'sub_category_id');
     }
+
+    public function account()
+    {
+        return $this->hasOne(Account::class, 'id', 'account_id');
+    }
 }

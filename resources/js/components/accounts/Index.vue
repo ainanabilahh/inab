@@ -11,22 +11,22 @@
                     <table class="min-w-full divide-y divide-gray-200 w-full">
                         <thead class="bg-gray-100">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">#</span>
+                                <th scope="col" class="p-8 text-left text-xs font-medium text-gray-500">
+                                    #
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Name</span>
+                                <th scope="col" class="p-8 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Name
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Category</span>
+                                <th scope="col" class="p-8 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Category
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Created At</span>
+                                <th scope="col" class="p-8 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Created At
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    <span class="text-xs font-medium tracking-wider leading-4 text-left text-gray-500 uppercase tracking-wider">Updated At</span>
+                                <th scope="col" class="p-8 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Updated At
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
+                                <th scope="col" class="p-8 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
                             </tr>
                         </thead>
 

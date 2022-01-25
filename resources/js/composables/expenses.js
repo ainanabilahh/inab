@@ -33,7 +33,6 @@ export default function useExpenses() {
     }
 
     const storeExpense = async (data) => {
-        console.log('data :>> ', data);
         errors.value = ''
         try {
             await axios.post('/api/expenses', data)

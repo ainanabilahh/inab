@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Models\Expense;
-use App\Http\Resources\ExpenseResource;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreExpenseRequest;
-use App\Http\Requests\UpdateExpenseRequest;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ExpenseRequest;
+use App\Http\Resources\ExpenseResource;
 
 class ExpenseController extends Controller
 {
@@ -24,7 +23,7 @@ class ExpenseController extends Controller
         }
 
         return ExpenseResource::collection(
-            Expense::with('sub_category')
+            Expense::with(['sub_category', 'account'])
                 ->whereMonth('date', $month)
                 ->whereYear('date', $year)
                 ->where('account_id', $request->account_id)
@@ -33,7 +32,7 @@ class ExpenseController extends Controller
         );
     }
 
-    public function store(StoreExpenseRequest $request)
+    public function store(ExpenseRequest $request)
     {
         $expense = Expense::create($request->validated());
 
@@ -45,7 +44,7 @@ class ExpenseController extends Controller
         return new ExpenseResource($expense);
     }
 
-    public function update(UpdateExpenseRequest $request, Expense $expense)
+    public function update(ExpenseRequest $request, Expense $expense)
     {
         $expense->update($request->validated());
 

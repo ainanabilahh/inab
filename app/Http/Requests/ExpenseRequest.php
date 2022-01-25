@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Requests;
-use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateExpenseRequest extends FormRequest
+class ExpenseRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +27,8 @@ class UpdateExpenseRequest extends FormRequest
             'user_id' => ['required'],
             'name' => ['required'],
             'amount' => ['required', 'numeric'],
-            'category_id' => ['required'],
+            'sub_category_id' => ['required'],
+            'account_id' => ['required'],
             'date' => ['date'],
             'link' => ['string', 'nullable'],
             'note' => ['string', 'nullable'],
