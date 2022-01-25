@@ -1,5 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+// ACCOUNTS
+import AccountsIndex from '../components/accounts/Index.vue'
+import AccountsCreate from '../components/accounts/Create.vue'
+import AccountsEdit from '../components/accounts/Edit.vue'
+
 // BUDGETS
 import BudgetsIndex from '../components/budgets/Index.vue'
 import BudgetsCreate from '../components/budgets/Create.vue'
@@ -16,6 +21,23 @@ import SubCategoriesCreate from '../components/sub_categories/Create.vue'
 import SubCategoriesEdit from '../components/sub_categories/Edit.vue'
 
 const routes = [
+    // ACCOUNTS
+    {
+        path: '/accounts',
+        name: 'accounts.index',
+        component: AccountsIndex
+    },
+    {
+        path: '/accounts/create',
+        name: 'accounts.create',
+        component: AccountsCreate
+    },
+    {
+        path: '/accounts/:id/edit',
+        name: 'accounts.edit',
+        component: AccountsEdit,
+        props: true
+    },
     // BUDGETS
     {
         path: '/budgets',
@@ -35,7 +57,7 @@ const routes = [
     },
     // EXPENSES
     {
-        path: '/accounts',
+        path: '/expenses',
         name: 'expenses.index',
         component: ExpensesIndex
     },

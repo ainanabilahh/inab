@@ -17,7 +17,6 @@ class CreateAccountsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('category');
-            $table->double('balance', 8, 2)->default(0);
             $table->timestamps();
         });
     }

@@ -28,7 +28,7 @@
                             <tr v-for="(item, index) in items" :key="index">
                                 <td>{{ index+1 }}</td>
                                 <td>
-                                    <input type="text" v-model="form.category_name[]" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+                                    <input type="text" v-model="form.category_names" name="category_name[]" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
                                 </td>
                                 <td>
                                     <button type="button" @click="removeItem" class="inline-flex items-center px-2 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150">
@@ -58,14 +58,11 @@ import useBudgets from '../../composables/budgets'
 import { reactive } from 'vue'
 
 export default {
-    watch: {
-        'items': {
-            handler(newValue, oldValue) {
-                newValue.forEach((item) => {
-                    item.total = item.quantity * item.amount
-                })
-            },
-            deep: true
+    data() {
+        return {
+            items: [{
+                category_name: '',
+            }]
         }
     },
     methods: {
@@ -73,7 +70,10 @@ export default {
             this.items.push({
                 category_name: '',
             })
-        },
+
+            form.category_names.push({ category_name: ''});
+          },
+
         removeItem() {
             this.items.splice(this.items, 1)
         }
@@ -82,7 +82,10 @@ export default {
         const form = reactive({
             user_id: document.querySelector("meta[name='user_id']").getAttribute('content'),
             name: '',
-            category_name: [],
+            category_names: [],
+            setResources(category_names) {
+                this.category_names = category_names
+            },
         })
 
         const { errors, storeBudget } = useBudgets()

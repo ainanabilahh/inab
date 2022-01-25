@@ -22,9 +22,9 @@
             <div>
                 <label for="category_id" class="mt-4 block text-sm font-medium text-gray-700">Category</label>
                 <div class="mt-1">
-                    <select v-model="form.category_id" id="category_id" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                        <option v-for="category in categories" v-bind:key="category.id" v-bind:value="category.id">
-                            {{ category.name }}
+                    <select v-model="form.sub_category_id" id="category_id" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <option v-for="sub_category in subCategories" v-bind:key="sub_category.id" v-bind:value="sub_category.id">
+                            {{ sub_category.name }}
                         </option>
                     </select>
                 </div>
@@ -58,8 +58,8 @@
 
 <script>
 import useExpenses from '../../composables/expenses'
-import useCategories from '../../composables/sub_categories'
-import { reactive, onMounted, ref } from 'vue'
+import useSubCategories from '../../composables/sub_categories'
+import { reactive, onMounted } from 'vue'
 
 export default {
     setup() {
@@ -67,16 +67,16 @@ export default {
             name: '',
             amount: '',
             user_id: document.querySelector("meta[name='user_id']").getAttribute('content'),
-            category_id: '',
+            sub_category_id: '',
             account_id: 1,
             date: '',
             link: '',
         })
 
         const { errors, storeExpense } = useExpenses()
-        const { categories, getCategories } = useCategories()
+        const { subCategories, getSubCategories } = useSubCategories()
 
-        onMounted(getCategories)
+        onMounted(getSubCategories)
 
         const saveExpense = async () => {
             await storeExpense({ ...form })
@@ -85,7 +85,7 @@ export default {
         return {
             form,
             errors,
-            categories,
+            subCategories,
             saveExpense
         }
     }

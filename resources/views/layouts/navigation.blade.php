@@ -41,7 +41,7 @@
                             <x-dropdown-link :href="route('accounts')">
                                 {{ __('Create New Account') }}
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('accounts')">
+                            <x-dropdown-link :href="route('expenses')">
                                 {{ __('Savings') }}
                             </x-dropdown-link>
                         </x-slot>
