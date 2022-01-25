@@ -57,9 +57,10 @@ const routes = [
     },
     // EXPENSES
     {
-        path: '/expenses',
+        path: '/expenses/:accountId',
         name: 'expenses.index',
-        component: ExpensesIndex
+        component: ExpensesIndex,
+        props: true
     },
     {
         path: '/expenses/create',

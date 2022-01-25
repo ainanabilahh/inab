@@ -110,9 +110,10 @@ import {
 } from 'vue';
 
 export default {
-    data() {
-        return {
-            month: ''
+    props: {
+        accountId: {
+            required: true,
+            type: String
         }
     },
     computed: {
@@ -125,7 +126,7 @@ export default {
             return sum.toFixed(2);
         },
     },
-    setup() {
+    setup(props) {
         const month = ref({
             month: new Date().getMonth(),
             year: new Date().getFullYear()
@@ -143,14 +144,14 @@ export default {
             }
 
             await destroyExpense(id)
-            await getExpenses()
+            await getExpenses({ account_id: props.accountId })
         }
 
         const filterExpense = async () => {
-            await getExpenses({ month:month.value.month+1, year:month.value.year })
+            await getExpenses({ account_id: props.accountId, month:month.value.month+1, year:month.value.year })
         }
 
-        onMounted(getExpenses)
+        onMounted(getExpenses({ account_id: props.accountId }))
 
         return {
             month,

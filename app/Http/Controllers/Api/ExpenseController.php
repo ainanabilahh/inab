@@ -14,6 +14,7 @@ class ExpenseController extends Controller
 {
     public function index(Request $request)
     {
+        Log::info($request->all());
         $month = date('m');
         $year = date('Y');
 
@@ -26,6 +27,7 @@ class ExpenseController extends Controller
             Expense::with('sub_category')
                 ->whereMonth('date', $month)
                 ->whereYear('date', $year)
+                ->where('account_id', $request->account_id)
                 ->orderByDesc('date')
                 ->get()
         );

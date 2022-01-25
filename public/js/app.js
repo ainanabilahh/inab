@@ -25450,10 +25450,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      month: ''
-    };
+  props: {
+    accountId: {
+      required: true,
+      type: String
+    }
   },
   computed: {
     totalItem: function totalItem() {
@@ -25464,7 +25465,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return sum.toFixed(2);
     }
   },
-  setup: function setup() {
+  setup: function setup(props) {
     var month = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)({
       month: new Date().getMonth(),
       year: new Date().getFullYear()
@@ -25494,7 +25495,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 _context.next = 6;
-                return getExpenses();
+                return getExpenses({
+                  account_id: props.accountId
+                });
 
               case 6:
               case "end":
@@ -25517,6 +25520,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context2.next = 2;
                 return getExpenses({
+                  account_id: props.accountId,
                   month: month.value.month + 1,
                   year: month.value.year
                 });
@@ -25534,7 +25538,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       };
     }();
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(getExpenses);
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(getExpenses({
+      account_id: props.accountId
+    }));
     return {
       month: month,
       expenses: expenses,
@@ -26072,14 +26078,33 @@ var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "stroke-linecap": "round",
   "stroke-linejoin": "round",
   "stroke-width": "2",
+  d: "M4 6h16M4 10h16M4 14h16M4 18h16"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  "class": "w-4 h-4",
+  "data-darkreader-inline-stroke": "",
+  fill: "none",
+  stroke: "currentColor",
+  style: {
+    "--darkreader-inline-stroke": "currentColor"
+  },
+  viewBox: "0 0 24 24",
+  xmlns: "http://www.w3.org/2000/svg"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "stroke-width": "2",
   d: "M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
 })], -1
 /* HOISTED */
 );
 
-var _hoisted_19 = ["onClick"];
+var _hoisted_20 = ["onClick"];
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
   "class": "w-4 h-4",
   "data-darkreader-inline-stroke": "",
   fill: "none",
@@ -26098,7 +26123,7 @@ var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_21 = [_hoisted_20];
+var _hoisted_22 = [_hoisted_21];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
@@ -26132,7 +26157,25 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.formatDate(item.updated_at)), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Edit "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" View "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+      to: {
+        name: 'expenses.index',
+        params: {
+          accountId: item.id
+        }
+      },
+      title: "View",
+      "class": "mr-2 inline-flex items-center px-2 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [_hoisted_18];
+      }),
+      _: 2
+      /* DYNAMIC */
+
+    }, 1032
+    /* PROPS, DYNAMIC_SLOTS */
+    , ["to"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Edit "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
       to: {
         name: 'accounts.edit',
         params: {
@@ -26143,7 +26186,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "mr-2 inline-flex items-center px-2 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [_hoisted_18];
+        return [_hoisted_19];
       }),
       _: 2
       /* DYNAMIC */
@@ -26156,9 +26199,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       },
       title: "Delete",
       "class": "inline-flex items-center px-2 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300 disabled:opacity-25 transition ease-in-out duration-150"
-    }, _hoisted_21, 8
+    }, _hoisted_22, 8
     /* PROPS */
-    , _hoisted_19)])]);
+    , _hoisted_20)])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])])])])])])], 64
@@ -28641,9 +28684,10 @@ var routes = [// ACCOUNTS
   props: true
 }, // EXPENSES
 {
-  path: '/expenses',
+  path: '/expenses/:accountId',
   name: 'expenses.index',
-  component: _components_expenses_Index_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
+  component: _components_expenses_Index_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
+  props: true
 }, {
   path: '/expenses/create',
   name: 'expenses.create',
