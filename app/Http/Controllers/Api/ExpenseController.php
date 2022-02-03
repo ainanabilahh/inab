@@ -13,7 +13,6 @@ class ExpenseController extends Controller
 {
     public function index(Request $request)
     {
-        Log::info($request->all());
         $month = date('m');
         $year = date('Y');
 
@@ -34,6 +33,7 @@ class ExpenseController extends Controller
 
     public function store(ExpenseRequest $request)
     {
+        Log::info($request->all());
         $expense = Expense::create($request->validated());
 
         return new ExpenseResource($expense);

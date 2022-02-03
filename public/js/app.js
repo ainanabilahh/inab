@@ -25291,13 +25291,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  setup: function setup() {
+  props: {
+    accountId: {
+      required: true,
+      type: String
+    }
+  },
+  computed: {
+    listItems: function listItems() {
+      return this.subCategories.sort(function (a, b) {
+        return a.name - b.name;
+      });
+    }
+  },
+  setup: function setup(props) {
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
       name: '',
       amount: '',
       user_id: document.querySelector("meta[name='user_id']").getAttribute('content'),
-      sub_category_id: '',
-      account_id: 1,
+      sub_category_id: 3,
+      account_id: props.accountId,
       date: '',
       link: ''
     });
@@ -25384,14 +25397,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         updateExpense = _useExpenses.updateExpense,
         getExpense = _useExpenses.getExpense;
 
-    var _useCategories = (0,_composables_sub_categories__WEBPACK_IMPORTED_MODULE_2__["default"])(),
-        categories = _useCategories.categories,
-        getCategories = _useCategories.getCategories;
+    var _useSubCategories = (0,_composables_sub_categories__WEBPACK_IMPORTED_MODULE_2__["default"])(),
+        subCategories = _useSubCategories.subCategories,
+        getSubCategories = _useSubCategories.getSubCategories;
 
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
       return getExpense(props.id);
     });
-    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(getCategories);
+    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(getSubCategories);
 
     var saveExpense = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -25418,7 +25431,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       errors: errors,
       expense: expense,
-      categories: categories,
+      subCategories: subCategories,
       saveExpense: saveExpense
     };
   }
@@ -26796,7 +26809,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "category_id",
     "class": "block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.subCategories, function (sub_category) {
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.listItems, function (sub_category) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: sub_category.id,
       value: sub_category.id
@@ -26950,22 +26963,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.expense.amount]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $setup.expense.category_id = $event;
+      return $setup.expense.sub_category_id = $event;
     }),
-    id: "category_id",
+    id: "sub_category_id",
     "class": "block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.categories, function (category) {
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.subCategories, function (sub_category) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: category.id,
-      value: category.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(category.name), 9
+      key: sub_category.id,
+      value: sub_category.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(sub_category.name), 9
     /* TEXT, PROPS */
     , _hoisted_9);
   }), 128
   /* KEYED_FRAGMENT */
   ))], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.expense.category_id]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.expense.sub_category_id]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "date",
     name: "date",
     id: "date",
@@ -28285,12 +28298,13 @@ function useExpenses() {
               });
 
             case 6:
-              _context3.next = 11;
+              _context3.next = 12;
               break;
 
             case 8:
               _context3.prev = 8;
               _context3.t0 = _context3["catch"](1);
+              console.log('e :>> ', _context3.t0);
 
               if (_context3.t0.response.status === 422) {
                 for (key in _context3.t0.response.data.errors) {
@@ -28298,7 +28312,7 @@ function useExpenses() {
                 }
               }
 
-            case 11:
+            case 12:
             case "end":
               return _context3.stop();
           }
@@ -28680,9 +28694,10 @@ var routes = [// ACCOUNTS
   component: _components_expenses_Index_vue__WEBPACK_IMPORTED_MODULE_6__["default"],
   props: true
 }, {
-  path: '/expenses/create',
+  path: '/expenses/create/:accountId',
   name: 'expenses.create',
-  component: _components_expenses_Create_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+  component: _components_expenses_Create_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+  props: true
 }, {
   path: '/expenses/:id/edit',
   name: 'expenses.edit',

@@ -38,6 +38,7 @@ export default function useExpenses() {
             await axios.post('/api/expenses', data)
             await router.push({ name: 'expenses.index' })
         } catch (e) {
+            console.log('e :>> ', e);
             if (e.response.status === 422) {
                 for (const key in e.response.data.errors) {
                     errors.value += e.response.data.errors[key][0] + ' ';

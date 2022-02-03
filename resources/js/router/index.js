@@ -63,9 +63,10 @@ const routes = [
         props: true
     },
     {
-        path: '/expenses/create',
+        path: '/expenses/create/:accountId',
         name: 'expenses.create',
-        component: ExpensesCreate
+        component: ExpensesCreate,
+        props: true
     },
     {
         path: '/expenses/:id/edit',

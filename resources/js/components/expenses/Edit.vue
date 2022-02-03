@@ -26,9 +26,9 @@
             <div>
                 <label for="category_id" class="mt-4 block text-sm font-medium text-gray-700">Category</label>
                 <div class="mt-1">
-                    <select v-model="expense.category_id" id="category_id" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                        <option v-for="category in categories" v-bind:key="category.id" v-bind:value="category.id">
-                            {{ category.name }}
+                    <select v-model="expense.sub_category_id" id="sub_category_id" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <option v-for="sub_category in subCategories" v-bind:key="sub_category.id" v-bind:value="sub_category.id">
+                            {{ sub_category.name }}
                         </option>
                     </select>
                 </div>
@@ -62,7 +62,7 @@
 
 <script>
 import useExpenses from '../../composables/expenses'
-import useCategories from '../../composables/sub_categories'
+import useSubCategories from '../../composables/sub_categories'
 import { onMounted } from 'vue';
 
 export default {
@@ -74,10 +74,10 @@ export default {
     },
     setup(props) {
         const { errors, expense, updateExpense, getExpense } = useExpenses()
-        const { categories, getCategories } = useCategories()
+        const { subCategories, getSubCategories } = useSubCategories()
 
         onMounted(() => getExpense(props.id))
-        onMounted(getCategories)
+        onMounted(getSubCategories)
 
         const saveExpense = async () => {
             await updateExpense(props.id)
@@ -86,7 +86,7 @@ export default {
         return {
             errors,
             expense,
-            categories,
+            subCategories,
             saveExpense
         }
     }

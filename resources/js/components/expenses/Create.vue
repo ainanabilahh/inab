@@ -23,7 +23,7 @@
                 <label for="category_id" class="mt-4 block text-sm font-medium text-gray-700">Category</label>
                 <div class="mt-1">
                     <select v-model="form.sub_category_id" id="category_id" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                        <option v-for="sub_category in subCategories" v-bind:key="sub_category.id" v-bind:value="sub_category.id">
+                        <option v-for="sub_category in listItems" v-bind:key="sub_category.id" v-bind:value="sub_category.id">
                             {{ sub_category.name }}
                         </option>
                     </select>
@@ -62,13 +62,24 @@ import useSubCategories from '../../composables/sub_categories'
 import { reactive, onMounted } from 'vue'
 
 export default {
-    setup() {
+    props: {
+        accountId: {
+            required: true,
+            type: String
+        }
+    },
+    computed: {
+        listItems() {
+             return this.subCategories.sort((a, b) => a.name - b.name );
+        },
+    },
+    setup(props) {
         const form = reactive({
             name: '',
             amount: '',
             user_id: document.querySelector("meta[name='user_id']").getAttribute('content'),
-            sub_category_id: '',
-            account_id: 1,
+            sub_category_id: 3,
+            account_id: props.accountId,
             date: '',
             link: '',
         })
