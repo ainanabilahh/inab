@@ -69,7 +69,7 @@ const routes = [
         props: true
     },
     {
-        path: '/expenses/:id/edit',
+        path: '/expenses/:accountId/:id/edit',
         name: 'expenses.edit',
         component: ExpensesEdit,
         props: true

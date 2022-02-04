@@ -33,7 +33,6 @@ class ExpenseController extends Controller
 
     public function store(ExpenseRequest $request)
     {
-        Log::info($request->all());
         $expense = Expense::create($request->validated());
 
         return new ExpenseResource($expense);

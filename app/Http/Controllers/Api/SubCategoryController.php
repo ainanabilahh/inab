@@ -12,7 +12,7 @@ class SubCategoryController extends Controller
 {
     public function index()
     {
-        return SubCategoryResource::collection(SubCategory::all());
+        return SubCategoryResource::collection(SubCategory::orderBy('name')->get());
     }
 
     public function store(SubCategoryRequest $request)

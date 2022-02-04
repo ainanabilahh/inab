@@ -38,7 +38,7 @@ export default function useExpenses() {
             await axios.post('/api/expenses', data)
             await router.push({ name: 'expenses.index' })
         } catch (e) {
-            console.log('e :>> ', e);
+            console.log('expenses store :>> ', e);
             if (e.response.status === 422) {
                 for (const key in e.response.data.errors) {
                     errors.value += e.response.data.errors[key][0] + ' ';
@@ -47,12 +47,13 @@ export default function useExpenses() {
         }
     }
 
-    const updateExpense = async (id) => {
+    const updateExpense = async (accountId, id) => {
         errors.value = ''
         try {
             await axios.patch(`/api/expenses/${id}`, expense.value)
-            await router.push({ name: 'expenses.index' })
+            await router.push({ name: 'expenses.index', params: { accountId } })
         } catch (e) {
+            console.log('expenses update :>> ', e);
             if (e.response.status === 422) {
                 for (const key in e.response.data.errors) {
                     errors.value += e.response.data.errors[key][0] + ' ';

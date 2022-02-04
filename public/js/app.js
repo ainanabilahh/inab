@@ -25297,19 +25297,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       type: String
     }
   },
-  computed: {
-    listItems: function listItems() {
-      return this.subCategories.sort(function (a, b) {
-        return a.name - b.name;
-      });
-    }
-  },
   setup: function setup(props) {
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
       name: '',
       amount: '',
       user_id: document.querySelector("meta[name='user_id']").getAttribute('content'),
-      sub_category_id: 3,
+      sub_category_id: '',
       account_id: props.accountId,
       date: '',
       link: ''
@@ -25388,6 +25381,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     id: {
       required: true,
       type: String
+    },
+    accountId: {
+      required: true,
+      type: String
     }
   },
   setup: function setup(props) {
@@ -25413,7 +25410,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return updateExpense(props.id);
+                return updateExpense(props.accountId, props.id);
 
               case 2:
               case "end":
@@ -26809,7 +26806,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "category_id",
     "class": "block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($options.listItems, function (sub_category) {
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.subCategories, function (sub_category) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: sub_category.id,
       value: sub_category.id
@@ -28304,7 +28301,7 @@ function useExpenses() {
             case 8:
               _context3.prev = 8;
               _context3.t0 = _context3["catch"](1);
-              console.log('e :>> ', _context3.t0);
+              console.log('expenses store :>> ', _context3.t0);
 
               if (_context3.t0.response.status === 422) {
                 for (key in _context3.t0.response.data.errors) {
@@ -28326,7 +28323,7 @@ function useExpenses() {
   }();
 
   var updateExpense = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(accountId, id) {
       var key;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
         while (1) {
@@ -28340,16 +28337,20 @@ function useExpenses() {
             case 4:
               _context4.next = 6;
               return router.push({
-                name: 'expenses.index'
+                name: 'expenses.index',
+                params: {
+                  accountId: accountId
+                }
               });
 
             case 6:
-              _context4.next = 11;
+              _context4.next = 12;
               break;
 
             case 8:
               _context4.prev = 8;
               _context4.t0 = _context4["catch"](1);
+              console.log('expenses update :>> ', _context4.t0);
 
               if (_context4.t0.response.status === 422) {
                 for (key in _context4.t0.response.data.errors) {
@@ -28357,7 +28358,7 @@ function useExpenses() {
                 }
               }
 
-            case 11:
+            case 12:
             case "end":
               return _context4.stop();
           }
@@ -28365,7 +28366,7 @@ function useExpenses() {
       }, _callee4, null, [[1, 8]]);
     }));
 
-    return function updateExpense(_x4) {
+    return function updateExpense(_x4, _x5) {
       return _ref4.apply(this, arguments);
     };
   }();
@@ -28387,7 +28388,7 @@ function useExpenses() {
       }, _callee5);
     }));
 
-    return function destroyExpense(_x5) {
+    return function destroyExpense(_x6) {
       return _ref5.apply(this, arguments);
     };
   }();
@@ -28699,7 +28700,7 @@ var routes = [// ACCOUNTS
   component: _components_expenses_Create_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
   props: true
 }, {
-  path: '/expenses/:id/edit',
+  path: '/expenses/:accountId/:id/edit',
   name: 'expenses.edit',
   component: _components_expenses_Edit_vue__WEBPACK_IMPORTED_MODULE_8__["default"],
   props: true

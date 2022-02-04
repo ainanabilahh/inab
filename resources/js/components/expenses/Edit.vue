@@ -70,6 +70,10 @@ export default {
         id: {
             required: true,
             type: String
+        },
+        accountId: {
+            required: true,
+            type: String
         }
     },
     setup(props) {
@@ -80,7 +84,7 @@ export default {
         onMounted(getSubCategories)
 
         const saveExpense = async () => {
-            await updateExpense(props.id)
+            await updateExpense(props.accountId, props.id)
         }
 
         return {
