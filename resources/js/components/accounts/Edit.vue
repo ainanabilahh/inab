@@ -20,7 +20,17 @@
                     <option :selected="account.category === 'Budget Accounts'">Budget Accounts</option>
                     <option :selected="account.category === 'Mortgages and Loans'">Mortgages and Loans</option>
                     <option :selected="account.category === 'Tracking Accounts'">Tracking Accounts</option>
+                    <option :selected="account.category === 'e-Wallet'">e-Wallet</option>
                 </select>
+            </div>
+        </div>
+
+         <div class="space-y-4 rounded-md shadow-sm">
+            <div>
+                <label for="balance" class="mt-4 block text-sm font-medium text-gray-700">Current Balance</label>
+                <div class="mt-1">
+                    <input type="text" name="balance" id="balance" v-model="account.balance" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                </div>
             </div>
         </div>
         <button type="submit" class="mt-4 inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase bg-gray-800 rounded-md border border-transparent ring-gray-300 transition duration-150 ease-in-out hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring disabled:opacity-25">

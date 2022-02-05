@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Http\Requests\AccountRequest;
 use App\Http\Resources\AccountResource;
+use App\Models\AccountHistory;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -13,13 +14,23 @@ class AccountController extends Controller
     public function index()
     {
         return AccountResource::collection(
-            Account::all()
+            Account::with(['account_histories'])->get()
         );
     }
 
     public function store(AccountRequest $request)
     {
-        $account = Account::create($request->validated());
+        // $account = Account::create($request->validated());
+
+        $account = Account::create([
+            'name' => $request->name,
+            'category' => $request->category,
+        ]);
+
+        AccountHistory::create([
+            'account_id' => $account->id,
+            'balance' => $request->balance,
+        ]);
 
         return new AccountResource($account);
     }
@@ -31,7 +42,17 @@ class AccountController extends Controller
 
     public function update(AccountRequest $request, Account $account)
     {
-        $account->update($request->validated());
+        // $account->update($request->validated());
+
+        Account::where('id', $account->id)->update([
+            'name' => $request->name,
+            'category' => $request->category,
+        ]);
+
+        AccountHistory::create([
+            'account_id' => $account->id,
+            'balance' => $request->balance,
+        ]);
 
         return new AccountResource($account);
     }

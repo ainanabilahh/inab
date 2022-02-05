@@ -3,6 +3,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 // Dashboard
 import Dashboard from '../components/Dashboard.vue'
 
+// BALANCES
+import BalancesIndex from '../components/balances/Index.vue'
+
 // ACCOUNTS
 import AccountsIndex from '../components/accounts/Index.vue'
 import AccountsCreate from '../components/accounts/Create.vue'
@@ -29,6 +32,13 @@ const routes = [
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard
+    },
+    // BALANCE
+    {
+        path: '/balances/:accountId',
+        name: 'balances.index',
+        component: BalancesIndex,
+        props: true
     },
     // ACCOUNTS
     {

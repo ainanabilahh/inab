@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class AccountHistory extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function account()
+    {
+        return $this->hasOne(Account::class, 'id', 'account_id');
+    }
 }
