@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\SubCategoryController;
 use App\Http\Controllers\Api\BudgetController;
 use App\Http\Controllers\Api\AccountController;
+use App\Http\Controllers\Api\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/dashboard/index', [DashboardController::class, 'index'])->name('dashboard.index');
 Route::post('/expenses/index', [ExpenseController::class, 'index'])->name('expenses.index');
 Route::apiResource('expenses', ExpenseController::class)->except(['index']);
 Route::apiResource('sub_categories', SubCategoryController::class);

@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+// Dashboard
+import Dashboard from '../components/Dashboard.vue'
+
 // ACCOUNTS
 import AccountsIndex from '../components/accounts/Index.vue'
 import AccountsCreate from '../components/accounts/Create.vue'
@@ -21,6 +24,12 @@ import SubCategoriesCreate from '../components/sub_categories/Create.vue'
 import SubCategoriesEdit from '../components/sub_categories/Edit.vue'
 
 const routes = [
+    // DASHBOARD
+    {
+        path: '/dashboard',
+        name: 'dashboard',
+        component: Dashboard
+    },
     // ACCOUNTS
     {
         path: '/accounts',
