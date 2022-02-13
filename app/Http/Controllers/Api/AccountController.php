@@ -14,7 +14,7 @@ class AccountController extends Controller
     public function index()
     {
         return AccountResource::collection(
-            Account::with(['account_histories'])->get()
+            Account::with(['account_histories', 'expenses'])->get()
         );
     }
 

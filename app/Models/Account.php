@@ -11,9 +11,9 @@ class Account extends Model
 
     protected $guarded = ['id'];
 
-    public function expense()
+    public function expenses()
     {
-        return $this->hasOne(Expense::class);
+        return $this->hasMany(Expense::class);
     }
 
     public function account_histories()

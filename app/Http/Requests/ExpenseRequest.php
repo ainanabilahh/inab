@@ -28,6 +28,7 @@ class ExpenseRequest extends FormRequest
             'name' => ['required'],
             'amount' => ['required', 'numeric'],
             'sub_category_id' => ['required'],
+            'transfer_to_id' => ['nullable'],
             'account_id' => ['required'],
             'date' => ['date'],
             'link' => ['string', 'nullable'],

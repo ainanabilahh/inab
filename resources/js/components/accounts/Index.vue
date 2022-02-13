@@ -46,7 +46,7 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div v-if="item.account_histories.length > 0">
-                                            RM {{ convertFloat(lastBalance(item.account_histories)) }}
+                                            RM {{ convertFloat(lastBalance(item.account_histories, item.expenses)) }}
                                         </div>
                                         <div v-else>
                                             RM 0.00
@@ -122,9 +122,21 @@ export default {
         }
     },
     methods: {
-        lastBalance(value) {
-            return value[value.length-1].balance;
-        }
+        lastBalance(balances, expenses) {
+
+            let balance = balances[balances.length-1].balance
+
+            console.log('balance :>> ', balance);
+            expenses.forEach(expense => {
+                if (balances[balances.length - 1].date !== null) {
+                    if (balances[balances.length - 1].date <= expense.date) {
+                        balance -= (expense.amount)
+                    }
+                }
+            });
+
+            return balance
+        },
     }
 }
 </script>

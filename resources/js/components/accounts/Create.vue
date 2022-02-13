@@ -8,7 +8,7 @@
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                 <div class="mt-1">
-                    <input type="text" name="name" id="name" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="form.name">
+                    <input v-model="form.name" type="text" name="name" id="name" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
             <div>
                 <label for="balance" class="mt-4 block text-sm font-medium text-gray-700">Current Balance</label>
                 <div class="mt-1">
-                    <input type="text" name="balance" id="balance" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="form.name">
+                    <input v-model="form.balance" type="text" name="balance" id="balance" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 </div>
             </div>
         </div>

@@ -5,50 +5,49 @@
 
     <form class="space-y-6" @submit.prevent="saveExpense">
         <div class="space-y-4 rounded-md shadow-sm">
-            <div>
-                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <div class="mt-1">
-                    <input type="text" name="name" id="name" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="form.name">
-                </div>
+            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <div class="mt-1">
+                <input type="text" name="name" id="name" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="form.name">
             </div>
 
-            <div>
-                <label for="amount" class="mt-4 block text-sm font-medium text-gray-700">Amount</label>
-                <div class="mt-1">
-                    <input type="text" name="amount" id="amount" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="form.amount">
-                </div>
+            <label for="amount" class="mt-4 block text-sm font-medium text-gray-700">Amount</label>
+            <div class="mt-1">
+                <input type="text" name="amount" id="amount" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="form.amount">
             </div>
 
-            <div>
-                <label for="category_id" class="mt-4 block text-sm font-medium text-gray-700">Category</label>
+            <label for="category_id" class="mt-4 block text-sm font-medium text-gray-700">Category</label>
+            <div class="mt-1">
+                <select v-model="form.sub_category_id" id="category_id" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    <option v-for="sub_category in subCategories" v-bind:key="sub_category.id" v-bind:value="sub_category.id">
+                        {{ sub_category.name }}
+                    </option>
+                </select>
+            </div>
+
+            <!-- If sub category === Transfer -->
+            <div v-if="form.sub_category_id === 32">
+                <label for="transfer_to_id" class="mt-4 block text-sm font-medium text-gray-700">Transfer To</label>
                 <div class="mt-1">
-                    <select v-model="form.sub_category_id" id="category_id" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                        <option v-for="sub_category in subCategories" v-bind:key="sub_category.id" v-bind:value="sub_category.id">
-                            {{ sub_category.name }}
+                    <select v-model="form.transfer_to_id" id="transfer_to_id" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        <option v-for="account in accounts" v-bind:key="account.id" v-bind:value="account.id">
+                            {{ account.name }}
                         </option>
                     </select>
                 </div>
             </div>
+
+            <label for="date" class="mt-4 block text-sm font-medium text-gray-700">Date</label>
+            <div class="mt-1">
+                <input type="date" name="date" id="date" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="form.date">
+                <!-- <Datepicker v-model="date" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/> -->
+            </div>
+
+            <label for="link" class="mt-4 block text-sm font-medium text-gray-700">Link</label>
+            <div class="mt-1">
+                <input type="text" name="link" id="link" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" v-model="form.link">
+            </div>
+
         </div>
-
-            <div>
-                <label for="date" class="mt-4 block text-sm font-medium text-gray-700">Date</label>
-                <div class="mt-1">
-                     <input type="date" name="date" id="date"
-                           class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           v-model="form.date">
-                    <!-- <Datepicker v-model="date" class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"/> -->
-                </div>
-            </div>
-
-            <div>
-                <label for="link" class="mt-4 block text-sm font-medium text-gray-700">Link</label>
-                <div class="mt-1">
-                    <input type="text" name="link" id="link"
-                           class="block mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                           v-model="form.link">
-                </div>
-            </div>
 
         <button type="submit" class="mt-4 inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase bg-gray-800 rounded-md border border-transparent ring-gray-300 transition duration-150 ease-in-out hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring disabled:opacity-25">
             Create
@@ -59,6 +58,7 @@
 <script>
 import useExpenses from '../../composables/expenses'
 import useSubCategories from '../../composables/sub_categories'
+import useAccounts from '../../composables/accounts'
 import { reactive, onMounted } from 'vue'
 
 export default {
@@ -74,6 +74,7 @@ export default {
             amount: '',
             user_id: document.querySelector("meta[name='user_id']").getAttribute('content'),
             sub_category_id: '',
+            transfer_to_id: '',
             account_id: props.accountId,
             date: '',
             link: '',
@@ -81,8 +82,11 @@ export default {
 
         const { errors, storeExpense } = useExpenses()
         const { subCategories, getSubCategories } = useSubCategories()
+        const { accounts, getAccounts } = useAccounts()
 
         onMounted(getSubCategories)
+
+        onMounted(getAccounts)
 
         const saveExpense = async () => {
             await storeExpense({ ...form })
@@ -92,6 +96,7 @@ export default {
             form,
             errors,
             subCategories,
+            accounts,
             saveExpense
         }
     }
