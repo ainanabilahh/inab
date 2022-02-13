@@ -53,11 +53,17 @@ import {
 } from 'vue';
 
 export default {
-    setup() {
+    props: {
+        accountId: {
+            required: true,
+            type: String
+        }
+    },
+    setup(props) {
 
         const { balances, getBalances } = useBalances()
 
-        onMounted(getBalances)
+        onMounted(getBalances({ account_id: props.accountId }))
 
         return {
             balances,

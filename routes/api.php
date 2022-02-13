@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/dashboard/index', [DashboardController::class, 'index'])->name('dashboard.index');
 Route::post('/expenses/index', [ExpenseController::class, 'index'])->name('expenses.index');
-Route::get('/balances/index', [BalanceController::class, 'index'])->name('balances.index');
+Route::post('/balances/index', [BalanceController::class, 'index'])->name('balances.index');
 Route::apiResource('expenses', ExpenseController::class)->except(['index']);
 Route::apiResource('sub_categories', SubCategoryController::class);
 Route::apiResource('budgets', BudgetController::class);

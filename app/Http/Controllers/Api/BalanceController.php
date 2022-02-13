@@ -6,6 +6,7 @@ use App\Models\Balance;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BalanceResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BalanceController extends Controller
 {
@@ -14,10 +15,11 @@ class BalanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        Log::info($request->all());
         return BalanceResource::collection(
-            Balance::all()
+            Balance::where('account_id', $request->account_id)->get()
         );
     }
 
