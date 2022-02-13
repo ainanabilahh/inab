@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ExpenseRequest;
 use App\Http\Resources\ExpenseResource;
-use App\Models\AccountHistory;
+use App\Models\Balance;
 
 class ExpenseController extends Controller
 {
@@ -37,11 +37,12 @@ class ExpenseController extends Controller
         $expense = Expense::create($request->validated());
 
         if ($request->transfer_to_id) {
-            $lastAccountHistories = AccountHistory::where('account_id', $request->transfer_to_id)->orderByDesc('id')->first();
+            $lastAccountHistories = Balance::where('account_id', $request->transfer_to_id)->orderByDesc('id')->first();
 
-            AccountHistory::create([
+            Balance::create([
                 'account_id' => $request->transfer_to_id,
                 'balance' => $lastAccountHistories->balance + $request->amount,
+                'date' => $request->date,
             ]);
         }
 

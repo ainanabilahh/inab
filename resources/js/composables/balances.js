@@ -6,8 +6,7 @@ export default function useBalances() {
     const errors = ref('')
 
     const getBalances = async () => {
-        let response = await axios.get('/api/balances')
-        console.log('response :>> ', response);
+        let response = await axios.get('/api/balances/index')
         balances.value = response.data.data
     }
 

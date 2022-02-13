@@ -11,7 +11,6 @@ export default function useAccounts() {
 
     const getAccounts = async () => {
         let response = await axios.get('/api/accounts')
-        console.log('response :>> ', response);
         accounts.value = response.data.data
     }
 

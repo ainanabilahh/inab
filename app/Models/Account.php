@@ -18,6 +18,6 @@ class Account extends Model
 
     public function account_histories()
     {
-        return $this->hasMany(AccountHistory::class);
+        return $this->hasMany(Balance::class);
     }
 }

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Account;
 use App\Http\Requests\AccountRequest;
 use App\Http\Resources\AccountResource;
-use App\Models\AccountHistory;
+use App\Models\Balance;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -27,7 +27,7 @@ class AccountController extends Controller
             'category' => $request->category,
         ]);
 
-        AccountHistory::create([
+        Balance::create([
             'account_id' => $account->id,
             'balance' => $request->balance,
         ]);
@@ -49,7 +49,7 @@ class AccountController extends Controller
             'category' => $request->category,
         ]);
 
-        AccountHistory::create([
+        Balance::create([
             'account_id' => $account->id,
             'balance' => $request->balance,
         ]);

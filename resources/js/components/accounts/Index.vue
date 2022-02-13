@@ -126,7 +126,6 @@ export default {
 
             let balance = balances[balances.length-1].balance
 
-            console.log('balance :>> ', balance);
             expenses.forEach(expense => {
                 if (balances[balances.length - 1].date !== null) {
                     if (balances[balances.length - 1].date <= expense.date) {
