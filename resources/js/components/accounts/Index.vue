@@ -45,8 +45,8 @@
                                          </router-link>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div v-if="item.account_histories.length > 0">
-                                            RM {{ convertFloat(lastBalance(item.account_histories, item.expenses)) }}
+                                        <div v-if="item.balances.length > 0">
+                                            RM {{ convertFloat(lastBalance(item.balances, item.expenses)) }}
                                         </div>
                                         <div v-else>
                                             RM 0.00

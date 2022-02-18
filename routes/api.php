@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\BudgetController;
 use App\Http\Controllers\Api\AccountController;
 use App\Http\Controllers\Api\BalanceController;
 use App\Http\Controllers\Api\DashboardController;
+use App\Http\Controllers\Api\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,5 @@ Route::post('/balances/index', [BalanceController::class, 'index'])->name('balan
 Route::apiResource('expenses', ExpenseController::class)->except(['index']);
 Route::apiResource('sub_categories', SubCategoryController::class);
 Route::apiResource('budgets', BudgetController::class);
+Route::apiResource('categories', CategoryController::class);
 Route::apiResource('accounts', AccountController::class);

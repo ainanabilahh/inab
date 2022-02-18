@@ -16,7 +16,7 @@ class Account extends Model
         return $this->hasMany(Expense::class);
     }
 
-    public function account_histories()
+    public function balances()
     {
         return $this->hasMany(Balance::class);
     }
